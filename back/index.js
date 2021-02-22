@@ -8,18 +8,22 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to DB
-mongoose.connect(process.env.DB, { useUnifiedTopology: true }, () => {
-	console.log("Connect to db ! Wouhou");
-});
+mongoose.connect(
+	process.env.DB,
+	{ useUnifiedTopology: true, useNewUrlParser: true },
+	() => {
+		console.log("Connect to db ");
+	}
+);
 
 // Import route
 const authRoute = require("./routes/auth/auth");
-const postRoute = require("./routes/posts/posts");
+const cardRoute = require("./routes/cards/cards");
 
 // Middleward
 app.use(express.json());
 app.use("/api/user", authRoute);
-app.use("/api/posts", postRoute);
+app.use("/api/cards", cardRoute);
 
 // App running
 app.listen(PORT, () => {

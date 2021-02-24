@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navigations from "../components/Navigations";
+import Footer from "../components/Footer";
 
 const App = () => {
 	const [header, setHeader] = useState(null);
@@ -27,6 +28,7 @@ const App = () => {
 	return (
 		<div>
 			<Navigations getHeader={getHeader} />
+			<Footer />
 		</div>
 	);
 };

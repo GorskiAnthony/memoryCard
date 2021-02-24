@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import Input from "../../components/Input";
 
-const Login = ({ getHeader }) => {
+const Login = ({ getHeader, history }) => {
 	const [login, setLogin] = useState({
 		password: "azerty",
 		email: "tests@test.fr",
 	});
 
 	const handleChange = (event) => {
-		setLogin({ [event.target.name]: event.target.value });
+		setLogin({ ...login, [event.target.name]: event.target.value });
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		getHeader(login);
+		history.push("/cards");
 	};
 
 	return (
@@ -33,51 +35,28 @@ const Login = ({ getHeader }) => {
 						className='relative flex-grow w-full'
 						data-children-count='1'
 					>
-						<label
-							htmlFor='email'
-							className='leading-7 text-sm text-gray-600'
-						>
-							Email
-						</label>
-						<input
+						<Input
 							type='email'
-							id='email'
 							name='email'
-							//à enlever ensuite
 							onChange={handleChange}
 							value={login.email}
-							//! fin
-							className='w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-							data-kwimpalastatus='alive'
-							data-kwimpalaid='1614111599540-1'
+							text='Email'
 						/>
 					</div>
 					<div
 						className='relative flex-grow w-full'
 						data-children-count='1'
 					>
-						<label
-							htmlFor='password'
-							className='leading-7 text-sm text-gray-600'
-						>
-							Password
-						</label>
-						<input
+						<Input
 							type='password'
-							id='password'
 							name='password'
-							//! à enlever
 							onChange={handleChange}
 							value={login.password}
-							//! fun
-							className='w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-							data-kwimpalastatus='alive'
-							data-kwimpalaid='1614111599540-0'
+							text='Mot de passe'
 						/>
 					</div>
 					<button
 						className='text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg'
-						role='submit'
 						type='submit'
 					>
 						Submit

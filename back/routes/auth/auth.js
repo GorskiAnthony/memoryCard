@@ -5,7 +5,10 @@ const jwt = require("jsonwebtoken");
 //!TODO voir les bad request
 
 // Validation
-const { registerValidation, loginValidation } = require("../../validationSchema");
+const {
+	registerValidation,
+	loginValidation,
+} = require("../../validationSchema");
 
 router.post("/register", async (req, res) => {
 	// Validate data before push on database

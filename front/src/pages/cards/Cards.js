@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "../components/Card";
+import Card from "../../components/Card";
 
 const Cards = ({ history }) => {
 	const [cards, setCards] = useState([]);
@@ -42,8 +42,8 @@ const Cards = ({ history }) => {
 					 * The request was made and the server responded with a
 					 * status code that falls out of the range of 2xx
 					 */
-					console.warn("Status code : " + error.response.status);
 					history.push("/login");
+					console.warn("Status code : " + error.response.status);
 				} else if (error.request) {
 					/*
 					 * The request was made but no response was received, `error.request`
@@ -64,11 +64,13 @@ const Cards = ({ history }) => {
 	}, []);
 
 	const showCard = () => {
-		return cards.map((card, i) => <Card key={i + 1} content={card} />);
+		return cards.map((card, i) => (
+			<Card key={i + 1} content={card} id={i} />
+		));
 	};
 
 	return (
-		<div>
+		<div className='container px-5 py-24 mx-auto'>
 			<h1>Voilà tes cartes</h1>
 			<section className='text-gray-600 body-font'>
 				<div className='container px-5 py-24 mx-auto'>

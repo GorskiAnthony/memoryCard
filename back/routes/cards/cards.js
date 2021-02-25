@@ -3,7 +3,7 @@ const Card = require("../../model/Card");
 const verify = require("../verifyToken");
 
 router.get("/", verify, async (req, res) => {
-	const cards = await Card.find();
+	const cards = await Card.find({ user: req.user });
 	res.json(cards);
 });
 
@@ -18,6 +18,7 @@ router.post("/add", verify, (req, res) => {
 		const saveCard = card.save();
 		res.send({ card });
 	} catch (err) {
+		console.log("tu nas pas le droit");
 		res.send(err);
 	}
 });

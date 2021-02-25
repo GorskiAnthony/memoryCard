@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Cards from "../pages/Cards";
+import Cards from "../pages/cards/Cards";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Logout from "../pages/auth/Logout";
 import Home from "../pages/Home";
 import img from "../images/logo_memory.svg";
+import PostCard from "../pages/cards/PostCard";
 
 const Navigations = ({ getHeader, header }) => {
 	return (
@@ -33,6 +34,12 @@ const Navigations = ({ getHeader, header }) => {
 						<Link to='/cards' className='mr-5 hover:text-gray-900'>
 							Cards
 						</Link>
+						<Link
+							to='/postCard'
+							className='mr-5 hover:text-gray-900'
+						>
+							Add Card
+						</Link>
 						<Link to='/logout' className='mr-5 hover:text-gray-900'>
 							Logout
 						</Link>
@@ -44,6 +51,10 @@ const Navigations = ({ getHeader, header }) => {
 					<Home />
 				</Route>
 				<Route
+					path='/postCard'
+					component={(props) => <PostCard {...props} />}
+				/>
+				<Route
 					path='/login'
 					component={(props) => (
 						<Login {...props} getHeader={getHeader} />
@@ -52,7 +63,7 @@ const Navigations = ({ getHeader, header }) => {
 				<Route
 					path='/register'
 					component={(props) => <Register {...props} />}
-				></Route>
+				/>
 				<Route
 					path='/cards'
 					component={(props) => <Cards {...props} header={header} />}

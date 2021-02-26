@@ -3,8 +3,8 @@ import Input from "../../components/Input";
 
 const Login = ({ getHeader, history }) => {
 	const [login, setLogin] = useState({
-		password: "azerty",
-		email: "tests@test.fr",
+		password: "",
+		email: "",
 	});
 
 	const handleChange = (event) => {

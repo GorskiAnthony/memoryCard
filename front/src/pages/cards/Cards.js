@@ -36,7 +36,7 @@ const Cards = ({ history }) => {
 					console.warn("Error request : " + error.request);
 				} else {
 					// Something happened in setting up the request and triggered an Error
-					console.error("Errorr :", error.message);
+					console.error("Error", error.message);
 				}
 				console.error(error);
 			}
@@ -44,7 +44,7 @@ const Cards = ({ history }) => {
 		// Add a response interceptor
 
 		getData();
-	}, [header]);
+	}, []);
 
 	const showCard = () => {
 		return cards.map((card, i) => <Card key={i + 1} content={card} />);

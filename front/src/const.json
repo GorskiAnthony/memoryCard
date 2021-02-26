@@ -1,5 +1,5 @@
 {
 	"url": {
-		"API": "http://localhost:5050"
+		"API": "https://memorycard-g.herokuapp.com"
 	}
 }

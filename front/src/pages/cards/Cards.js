@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../../components/Card";
+import { url } from "../../const.json";
 
 const Cards = ({ history }) => {
+	const API = url.API;
 	const [cards, setCards] = useState([]);
 	const header = localStorage.getItem("header");
 
@@ -10,14 +12,11 @@ const Cards = ({ history }) => {
 		async function getData() {
 			try {
 				// success 🎉
-				const response = await axios.get(
-					"http://localhost:5050/api/cards",
-					{
-						headers: {
-							"auth-token": header,
-						},
-					}
-				);
+				const response = await axios.get(`${API}/api/cards`, {
+					headers: {
+						"auth-token": header,
+					},
+				});
 				setCards(response.data);
 			} catch (error) {
 				// error 😱
@@ -45,7 +44,7 @@ const Cards = ({ history }) => {
 		// Add a response interceptor
 
 		getData();
-	}, []);
+	}, [header]);
 
 	const showCard = () => {
 		return cards.map((card, i) => <Card key={i + 1} content={card} />);

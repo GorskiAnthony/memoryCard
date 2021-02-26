@@ -13,7 +13,7 @@ mongoose.connect(
 	process.env.DB,
 	{ useUnifiedTopology: true, useNewUrlParser: true },
 	() => {
-		console.log("Connect to db ");
+		console.log("Connect to Mongoose ");
 	}
 );
 

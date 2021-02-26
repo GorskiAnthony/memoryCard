@@ -4,8 +4,11 @@ import axios from "axios";
 
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../../const.json";
 
 const Register = ({ history }) => {
+	const API = url.API;
+
 	const [user, setUser] = useState({
 		name: "",
 		email: "",
@@ -40,7 +43,7 @@ const Register = ({ history }) => {
 
 	const postUser = ({ name, email, password }) => {
 		axios
-			.post("http://localhost:5050/api/user/register", {
+			.post(`${API}/api/user/register`, {
 				name,
 				email,
 				password,

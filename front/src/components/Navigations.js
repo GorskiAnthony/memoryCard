@@ -10,7 +10,7 @@ import PostCard from "../pages/cards/PostCard";
 
 const Navigations = ({ getHeader, header }) => {
 	const login = header;
-	console.log(login);
+
 	const notLogin = () => (
 		<>
 			<Link to='/login' className='mr-5 hover:text-gray-900'>

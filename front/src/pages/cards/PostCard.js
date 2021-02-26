@@ -3,8 +3,11 @@ import Input from "../../components/Input";
 import axios from "axios";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../../const.json";
 
 const PostCard = ({ history }) => {
+	const API = url.API;
+
 	const notifySuccess = () =>
 		toast.success("📚 La carte à bien été enregisté!", {
 			position: "top-right",
@@ -41,7 +44,7 @@ const PostCard = ({ history }) => {
 	const addCard = ({ recto, verso }) => {
 		axios
 			.post(
-				"http://localhost:5050/api/cards/add",
+				`${API}/api/cards/add`,
 				{
 					recto,
 					verso,

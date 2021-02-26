@@ -1,11 +1,38 @@
 import React, { useState } from "react";
 import Input from "../../components/Input";
 import axios from "axios";
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PostCard = ({ history }) => {
+	const notifySuccess = () =>
+		toast.success("📚 La carte à bien été enregisté!", {
+			position: "top-right",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			transition: Zoom,
+		});
+	const notifyError = () =>
+		toast.error("😬 Vous n'avez pas remplit tout les champs ", {
+			position: "top-right",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			transition: Zoom,
+		});
 	if (!localStorage.getItem("header")) history.push("/login");
 
-	const [card, setCard] = useState({});
+	const [card, setCard] = useState({
+		recto: "",
+		verso: "",
+	});
 
 	const handleChange = (event) => {
 		setCard({ ...card, [event.target.name]: event.target.value });
@@ -29,8 +56,7 @@ const PostCard = ({ history }) => {
 				// success 🎉
 
 				// if response.data is not null
-				const data = response.data;
-				console.log(`je suis dans le then: ${data}`);
+				console.log(`Done : ${response}`);
 			})
 			.catch((err) => {
 				// error 😱
@@ -41,8 +67,17 @@ const PostCard = ({ history }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		addCard(card);
-		history.push("/cards");
+
+		if (card.verso === "" || card.recto === "") {
+			notifyError();
+		} else {
+			addCard(card);
+			notifySuccess();
+			setCard({
+				verso: "",
+				recto: "",
+			});
+		}
 	};
 
 	return (
@@ -78,6 +113,7 @@ const PostCard = ({ history }) => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer />
 		</form>
 	);
 };

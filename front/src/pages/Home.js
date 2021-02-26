@@ -20,13 +20,13 @@ const Home = () => {
 					<div className='flex justify-center'>
 						<Link
 							className='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'
-							to='/login'
+							to='/register'
 						>
 							S'inscrire
 						</Link>
 						<Link
 							className='ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg'
-							to='/register'
+							to='/login'
 						>
 							Se connecter
 						</Link>

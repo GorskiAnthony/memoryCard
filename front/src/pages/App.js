@@ -27,7 +27,7 @@ const App = () => {
 
 	return (
 		<div>
-			<Navigations getHeader={getHeader} />
+			<Navigations getHeader={getHeader} header={header} />
 			<Footer />
 		</div>
 	);

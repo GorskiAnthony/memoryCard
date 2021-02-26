@@ -9,6 +9,32 @@ import img from "../images/logo_memory.svg";
 import PostCard from "../pages/cards/PostCard";
 
 const Navigations = ({ getHeader, header }) => {
+	const login = header;
+	console.log(login);
+	const notLogin = () => (
+		<>
+			<Link to='/login' className='mr-5 hover:text-gray-900'>
+				Connexion
+			</Link>
+			<Link to='/register' className='mr-5 hover:text-gray-900'>
+				Inscription
+			</Link>
+		</>
+	);
+
+	const Logged = () => (
+		<>
+			<Link to='/cards' className='mr-5 hover:text-gray-900'>
+				Mes cartes
+			</Link>
+			<Link to='/postCard' className='mr-5 hover:text-gray-900'>
+				Ajouter une carte
+			</Link>
+			<Link to='/logout' className='mr-5 hover:text-gray-900'>
+				Déconnexion
+			</Link>
+		</>
+	);
 	return (
 		<Router>
 			<header className='text-gray-600 body-font'>
@@ -22,27 +48,7 @@ const Navigations = ({ getHeader, header }) => {
 						<span className='ml-3 text-xl'>Memory Cards</span>
 					</Link>
 					<nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
-						<Link to='/login' className='mr-5 hover:text-gray-900'>
-							Login
-						</Link>
-						<Link
-							to='/register'
-							className='mr-5 hover:text-gray-900'
-						>
-							Inscription
-						</Link>
-						<Link to='/cards' className='mr-5 hover:text-gray-900'>
-							Cards
-						</Link>
-						<Link
-							to='/postCard'
-							className='mr-5 hover:text-gray-900'
-						>
-							Add Card
-						</Link>
-						<Link to='/logout' className='mr-5 hover:text-gray-900'>
-							Logout
-						</Link>
+						{login ? Logged() : notLogin()}
 					</nav>
 				</div>
 			</header>
@@ -66,12 +72,13 @@ const Navigations = ({ getHeader, header }) => {
 				/>
 				<Route
 					path='/cards'
-					component={(props) => <Cards {...props} header={header} />}
+					component={(props) => <Cards {...props} />}
 				/>
 
-				<Route path='/logout'>
-					<Logout />
-				</Route>
+				<Route
+					path='/logout'
+					component={(props) => <Logout {...props} header={header} />}
+				/>
 			</Switch>
 		</Router>
 	);

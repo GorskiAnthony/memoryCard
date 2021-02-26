@@ -2,15 +2,37 @@ import React, { useState } from "react";
 import Input from "../../components/Input";
 import axios from "axios";
 
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Register = ({ history }) => {
 	const [user, setUser] = useState({
-		name: "Anne Onyme",
-		email: "anne@onyme.fr",
-		password: "azerty",
+		name: "",
+		email: "",
+		password: "",
 	});
-
-	//const [isExist, setIsExist] = useState(true);
-	const [errors, setErrors] = useState("");
+	const notifySuccess = () =>
+		toast.success("🎉 Bienvenue parmis nous !", {
+			position: "top-right",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			transition: Zoom,
+		});
+	const notifyError = (error) =>
+		toast.error(`😬 ${error} `, {
+			position: "top-right",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			transition: Zoom,
+		});
 
 	const handleChange = (event) => {
 		setUser({ ...user, [event.target.name]: event.target.value });
@@ -29,11 +51,21 @@ const Register = ({ history }) => {
 				// if response.data is not null
 				const data = response.data;
 
-				console.log(`je suis danbs le then: ${data}`);
+				if (Object.keys(data).length !== 0) {
+					notifyError(data);
+				} else {
+					notifySuccess();
+					setTimeout(() => {
+						history.push("/login");
+					}, 1000);
+				}
+
+				console.log(`je suis dans le then: ${data}`);
+				console.log(data);
 			})
 			.catch((err) => {
 				// error 😱
-				console.log("je suis danbs le catch: " + errors);
+				console.log("je suis danbs le catch: ");
 				console.log(err);
 			});
 	};
@@ -42,18 +74,6 @@ const Register = ({ history }) => {
 		event.preventDefault();
 		postUser(user);
 	};
-
-	const displayError = () => (
-		<div
-			className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-5 rounded relative text-sm'
-			role='alert'
-		>
-			<strong className='font-bold'>
-				Oh ! Je crois qu'il y a une erreur
-			</strong>
-			<span className='block sm:inline'>{errors}</span>
-		</div>
-	);
 
 	return (
 		<form className='text-gray-600 body-font' onSubmit={handleSubmit}>
@@ -67,7 +87,7 @@ const Register = ({ history }) => {
 						partie de ceux qui souhaitent appréhender leur mémoire !
 					</p>
 				</div>
-				{errors ? displayError() : ""}
+
 				<div className='flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end'>
 					<div className='relative flex-grow w-full'>
 						<Input
@@ -110,6 +130,7 @@ const Register = ({ history }) => {
 					</button>
 				</div>
 			</div>
+			<ToastContainer />
 		</form>
 	);
 };

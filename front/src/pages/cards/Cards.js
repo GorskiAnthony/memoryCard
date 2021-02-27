@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../../components/Card";
+import { Link } from "react-router-dom";
 import { url } from "../../const.json";
 
 const Cards = ({ history }) => {
@@ -17,10 +18,12 @@ const Cards = ({ history }) => {
 						"auth-token": header,
 					},
 				});
+				console.log(response);
 				setCards(response.data);
 			} catch (error) {
 				// error 😱
 				if (error.response) {
+					console.log(error.response);
 					/*
 					 * The request was made and the server responded with a
 					 * status code that falls out of the range of 2xx
@@ -53,8 +56,30 @@ const Cards = ({ history }) => {
 	return (
 		<div className='container px-5 mx-auto'>
 			<section className='text-gray-600 body-font'>
-				<div className='container px-5 py-24 mx-auto'>
-					<div className='flex flex-wrap -m-4'>{showCard()}</div>
+				<div className='container px-5 py-16 mx-auto'>
+					{Object.keys(cards).length === 0 ? (
+						<section className='text-gray-600 body-font'>
+							<div className='container px-5 py-16 mx-auto'>
+								<div className='lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto'>
+									<h1 className='flex-grow sm:pr-16 text-2xl font-medium title-font text-gray-900'>
+										Votre tableau de bord est vide, mais
+										n'hésitez pas à le remplir 😜
+										<br />
+										Cliquez sur le bouton pour ajouter une
+										carte !
+									</h1>
+									<Link
+										to='/PostCard'
+										className='flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0'
+									>
+										Ajouter une carte
+									</Link>
+								</div>
+							</div>
+						</section>
+					) : (
+						<div className='flex flex-wrap -m-4'>{showCard()}</div>
+					)}
 				</div>
 			</section>
 		</div>

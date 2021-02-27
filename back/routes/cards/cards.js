@@ -7,6 +7,11 @@ router.get("/", verify, async (req, res) => {
 	res.json(cards);
 });
 
+router.get("/counts", async (req, res) => {
+	const nbCard = await Card.find({}).count();
+	res.json(nbCard);
+});
+
 // Post card
 router.post("/add", verify, (req, res) => {
 	const card = new Card({

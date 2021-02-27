@@ -2,6 +2,7 @@ import React from "react";
 
 const Logout = ({ header }) => {
 	localStorage.removeItem("header");
+	localStorage.removeItem("login");
 	header = null;
 
 	const refresh = () => {

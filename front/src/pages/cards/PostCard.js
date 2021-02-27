@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../../components/Input";
 import axios from "axios";
-import { ToastContainer, toast, Zoom } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { url } from "../../const.json";
 
@@ -57,13 +57,12 @@ const PostCard = ({ history }) => {
 			)
 			.then((response) => {
 				// success 🎉
-
 				// if response.data is not null
-				console.log(`Done : ${response}`);
+				console.log(`Card push`);
 			})
 			.catch((err) => {
 				// error 😱
-				console.log("je suis danbs le catch: ");
+				console.log("je suis dans le catch: ");
 				console.log(err);
 			});
 	};
@@ -116,7 +115,6 @@ const PostCard = ({ history }) => {
 					</div>
 				</div>
 			</div>
-			<ToastContainer />
 		</form>
 	);
 };

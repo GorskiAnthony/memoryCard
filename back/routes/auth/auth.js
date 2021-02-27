@@ -36,6 +36,11 @@ router.post("/register", async (req, res) => {
 	}
 });
 
+router.get("/counts", async (req, res) => {
+	const nbUser = await User.find({}).count();
+	res.json(nbUser);
+});
+
 // Login
 router.post("/login", async (req, res) => {
 	const { error } = loginValidation(req.body);

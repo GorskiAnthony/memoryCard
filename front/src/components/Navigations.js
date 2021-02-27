@@ -11,6 +11,8 @@ import PostCard from "../pages/cards/PostCard";
 const Navigations = ({ getHeader, header }) => {
 	const login = header;
 
+	if (login) localStorage.setItem("login", true);
+
 	const notLogin = () => (
 		<>
 			<Link to='/login' className='mr-5 hover:text-gray-900'>
@@ -48,7 +50,7 @@ const Navigations = ({ getHeader, header }) => {
 						<span className='ml-3 text-xl'>Memory Cards</span>
 					</Link>
 					<nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
-						{login ? Logged() : notLogin()}
+						{localStorage.getItem("login") ? Logged() : notLogin()}
 					</nav>
 				</div>
 			</header>

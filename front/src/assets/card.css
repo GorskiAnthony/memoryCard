@@ -39,7 +39,6 @@
 .card {
 	width: 12em;
 	height: 12em;
-	margin: 10px;
 }
 .card .front,
 .card .back {
@@ -58,7 +57,7 @@
 	font-size: 1rem;
 }
 .card .back {
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	color: var(--white);
 	background: var(--blue);
 }

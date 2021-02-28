@@ -39,37 +39,41 @@ const Home = () => {
 
 					<div className='container px-5 py-8 mx-auto'>
 						<div className='flex flex-wrap -m-4 text-center'>
-							<div className='p-4 sm:w-1/4 w-1/2'>
+							<div className='p-4 sm:w-1/2 w-1/2'>
 								<h2 className='title-font font-medium sm:text-4xl text-3xl text-gray-900'>
 									<CountUp end={nbUser} />
 								</h2>
 								<p className='leading-relaxed'>Utilisateurs</p>
 							</div>
-							<div className='p-4 sm:w-1/4 w-1/2'>
+							<div className='p-4 sm:w-1/2 w-1/2'>
 								<h2 className='title-font font-medium sm:text-4xl text-3xl text-gray-900'>
 									<CountUp end={nbCard} />
 								</h2>
 								<p className='leading-relaxed'>
-									Cartes enregistrées
+									Cartes retenues
 								</p>
 							</div>
 						</div>
 					</div>
 
-					<div className='flex justify-center'>
-						<Link
-							className='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'
-							to='/register'
-						>
-							S'inscrire
-						</Link>
-						<Link
-							className='ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg'
-							to='/login'
-						>
-							Se connecter
-						</Link>
-					</div>
+					{localStorage.getItem("login") ? (
+						""
+					) : (
+						<div className='flex justify-center'>
+							<Link
+								className='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'
+								to='/register'
+							>
+								S'inscrire
+							</Link>
+							<Link
+								className='ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg'
+								to='/login'
+							>
+								Se connecter
+							</Link>
+						</div>
+					)}
 				</div>
 
 				<div className='lg:max-w-lg lg:w-full md:w-1/2 w-5/6'>

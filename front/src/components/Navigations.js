@@ -7,6 +7,7 @@ import Logout from "../pages/auth/Logout";
 import Home from "../pages/Home";
 import img from "../images/logo_memory.svg";
 import PostCard from "../pages/cards/PostCard";
+import DashboardCard from "../pages/cards/DashboardCard";
 
 const Navigations = ({ getHeader, header }) => {
 	const login = header;
@@ -31,6 +32,9 @@ const Navigations = ({ getHeader, header }) => {
 			</Link>
 			<Link to='/postCard' className='mr-5 hover:text-gray-900'>
 				Ajouter une carte
+			</Link>
+			<Link to='/dashboard' className='mr-5 hover:text-gray-900'>
+				Dashboard
 			</Link>
 			<Link to='/logout' className='mr-5 hover:text-gray-900'>
 				Déconnexion
@@ -75,6 +79,10 @@ const Navigations = ({ getHeader, header }) => {
 				<Route
 					path='/cards'
 					component={(props) => <Cards {...props} />}
+				/>
+				<Route
+					path='/dashboard'
+					component={(props) => <DashboardCard {...props} />}
 				/>
 
 				<Route

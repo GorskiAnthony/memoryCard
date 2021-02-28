@@ -2,14 +2,23 @@ const router = require("express").Router();
 const Card = require("../../model/Card");
 const verify = require("../verifyToken");
 
+router.get("/counts", async (req, res) => {
+	const nbCard = await Card.find({}).count();
+	res.json(nbCard);
+});
+
+// get card
 router.get("/", verify, async (req, res) => {
 	const cards = await Card.find({ user: req.user });
 	res.json(cards);
 });
 
-router.get("/counts", async (req, res) => {
-	const nbCard = await Card.find({}).count();
-	res.json(nbCard);
+router.delete("/delete/:id", verify, async (req, res) => {
+	const card = await Card.deleteOne({
+		nbCard: req.params.id,
+	});
+	//console.log(card);
+	res.send("card delete");
 });
 
 // Post card

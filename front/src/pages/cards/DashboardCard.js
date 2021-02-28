@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "../../components/Card";
+import DashCard from "../../components/DashCard";
 import { Link } from "react-router-dom";
 import { url } from "../../const.json";
 
-const Cards = ({ history }) => {
+const DashboardCard = ({ history }) => {
 	const API = url.API;
 	const [cards, setCards] = useState([]);
 	const header = localStorage.getItem("header");
@@ -49,7 +49,7 @@ const Cards = ({ history }) => {
 	}, []);
 
 	const showCard = () => {
-		return cards.map((card, i) => <Card key={i + 1} content={card} />);
+		return cards.map((card, i) => <DashCard key={i + 1} content={card} />);
 	};
 
 	return (
@@ -85,4 +85,4 @@ const Cards = ({ history }) => {
 	);
 };
 
-export default Cards;
+export default DashboardCard;

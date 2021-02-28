@@ -2,10 +2,6 @@ const mongosse = require("mongoose");
 
 // Model User
 const CardSchema = new mongosse.Schema({
-	nbCard: {
-		type: Number,
-		default: Date.now,
-	},
 	user: {
 		type: String,
 		require: true,
@@ -25,6 +21,10 @@ const CardSchema = new mongosse.Schema({
 	category: {
 		type: Number,
 		default: 1,
+	},
+	nbCard: {
+		type: Number,
+		default: Date.now,
 	},
 });
 

@@ -6,8 +6,8 @@ import { url } from "../const.json";
 import CountUp from "react-countup";
 
 const Home = () => {
-	const [nbCard, setNbCard] = useState("");
-	const [nbUser, setNbUser] = useState("");
+	const [nbCard, setNbCard] = useState(0);
+	const [nbUser, setNbUser] = useState(0);
 
 	function getUser() {
 		return axios.get(`${url.API}/api/user/counts`);

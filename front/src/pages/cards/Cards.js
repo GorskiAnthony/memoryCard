@@ -77,7 +77,9 @@ const Cards = ({ history }) => {
 							</div>
 						</section>
 					) : (
-						<div className='flex flex-wrap -m-4'>{showCard()}</div>
+						<div className='flex flex-wrap -m-4 justify-center'>
+							{showCard()}
+						</div>
 					)}
 				</div>
 			</section>

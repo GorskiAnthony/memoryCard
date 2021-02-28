@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import img from "../images/logo_memory.svg";
 import PostCard from "../pages/cards/PostCard";
 import DashboardCard from "../pages/cards/DashboardCard";
+import UpdateCard from "./UpdateCard";
 
 const Navigations = ({ getHeader, header }) => {
 	const login = header;
@@ -83,6 +84,11 @@ const Navigations = ({ getHeader, header }) => {
 				<Route
 					path='/dashboard'
 					component={(props) => <DashboardCard {...props} />}
+				/>
+
+				<Route
+					path='/update/:id'
+					component={(props) => <UpdateCard {...props} />}
 				/>
 
 				<Route

@@ -2,8 +2,9 @@ import React from "react";
 import "../assets/card.css";
 import axios from "axios";
 import { url } from "../const.json";
-// delete card
+import { Link } from "react-router-dom";
 
+// delete card
 const DashCard = ({ content }) => {
 	const handleClick = async (event) => {
 		event.preventDefault();
@@ -31,17 +32,17 @@ const DashCard = ({ content }) => {
 			</div>
 			<span className='flex md:mt-4 mt-10'>
 				<button
-					className='inline-flex text-red-500 border-0 py-1 px-2 mx-3 focus:outline-none hover:underline'
+					className='inline-flex bg-red-500 text-white border-0 py-1 px-2 mx-3 focus:outline-none hover:bg-red-600 rounded'
 					onClick={handleClick}
 				>
-					Delete
+					Supprimer
 				</button>
-				<button
+				<Link
 					className='inline-flex text-indigo-500 border-0 py-1 px-2 focus:outline-none hover:underline disabled:opacity-50'
-					disabled
+					to={`/update/${content.nbCard}`}
 				>
-					Update
-				</button>
+					Mise à jour
+				</Link>
 			</span>
 		</div>
 	);
